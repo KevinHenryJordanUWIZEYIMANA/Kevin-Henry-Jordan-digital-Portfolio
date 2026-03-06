@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Henry Jordan UWIZEYIMANA Portfolio</title>
+
+<style>
+
+/* ================= ROOT ================= */
+:root{
+    --bg:#0e0f14;
+    --card:rgba(255,255,255,0.05);
+    --accent1:#ff4d4d;
+    --accent2:#ff8800;
+    --text:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+header{
+    position:fixed;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    padding:20px 8%;
+    transition:.3s;
+    z-index:1000;
+}
+
+header.scrolled{
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    font-size: 30px;
+    font-weight:bold;
+    color:var(--accent2);
+}
+
+nav a{
+    margin-left:25px;
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--accent2);
+}
+
+/* ================= FLOATING SHAPES ================= */
+.shape{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:0.4;
+    z-index:-1;
+}
+
+.shape1{
+    width:400px;
+    height:400px;
+    background:linear-gradient(45deg,var(--accent1),var(--accent2));
+    top:-100px;
+    left:-100px;
+}
+
+.shape2{
+    width:500px;
+    height:500px;
+    background:linear-gradient(45deg,var(--accent2),var(--accent1));
+    bottom:-200px;
+    right:-200px;
+}
+
+/* ================= HERO ================= */
+.hero{
+    height:100vh;
+    display:flex;
+    gap: 40px;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 8%;
+    border-bottom: #ffffff solid 6px;
+    border-radius: 0% 0% 10% 10%;
+}
+
+.hero h1{
+    font-size:40px;
+}
+
+.hero span{
+    background:linear-gradient(to right,var(--accent1),var(--accent2));
+    background-clip:text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.intro {
+    width: 500px;
+}
+
+.typing{
+    margin-top:10px;
+    font-size:24px;
+    color:#ccc;
+}
+
+.hero img{
+    margin-top: 20px;
+    width:350px;
+    border-radius:300px;
+    box-shadow:0 40px 80px rgba(0,0,0,0.6);
+}
+/* ================= Additional functions ================= */
+.profile-intro{
+    justify-content:center;
+    text-align:center;
+}
+.profile-intro img{
+    width: 300px;
+    border-radius: 50%;
+    box-shadow:0 40px 80px rgba(0,0,0,0.6);
+}
+.profile-intro div{
+    margin-top: 30px;
+}
+.hero p{
+    margin-top:20px;
+    font-size:18px;
+    max-width:600px;
+    text-align: justify;
+}
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:14px 32px;
+    background:linear-gradient(to right,var(--accent1),var(--accent2));
+    border-radius:6px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+}
+
+/* ================= SECTIONS ================= */
+.section{
+    padding:120px 8%;
+    max-width:1200px;
+    margin:auto;
+}
+
+.glass{
+    background:var(--card);
+    backdrop-filter:blur(15px);
+    padding: 50px;
+    border-radius:20px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.5);
+}
+.glass p {
+    text-align: justify;
+}
+
+/* ================= PROJECT GRID ================= */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.project{
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.project img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.project:hover img{
+    transform:scale(1.1);
+}
+.other-skills{
+    margin-top:30px;
+}
+.other-skills ul {
+    line-height: 1.5;
+    margin: 20px 70px;
+}
+.other-skills li {
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
+    display:flex;
+    align-items:end;
+    padding:20px;
+    opacity:0;
+    transition:.4s;
+}
+
+.project:hover .overlay{
+    opacity:1;
+}
+
+/* ================= MODAL ================= */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-content{
+    background:#111;
+    padding:40px;
+    border-radius:20px;
+    max-width:600px;
+}
+
+.modal img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+/* ================= SCROLL REVEAL ================= */
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ================= CONTACT SECTION ================= */
+.contact-container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.contact-header{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.contact-header h2{
+    font-size:48px;
+    margin-bottom:15px;
+    background:linear-gradient(to right,var(--accent1),var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.contact-header p{
+    font-size:18px;
+    color:#ccc;
+}
+
+.contact-content{
+    display:flex;
+    gap: 30px;
+}
+
+.profile-intro{
+    flex: 1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.contact-form{
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    background:var(--card);
+    margin-bottom: 20px;
+}
+
+.contact-info{
+    flex: 1;
+    display:flex;
+    justify-content:center;
+    gap: 20px;
+}
+
+.info-card{
+    background:var(--card);
+    backdrop-filter:blur(15px);
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+    transition:.3s;
+}
+
+.info-card:hover{
+    background:rgba(255,255,255,0.1);
+    transform:translateY(-5px);
+}
+
+.info-card h3{
+    font-size:20px;
+    margin-bottom:12px;
+    color:var(--accent2);
+}
+
+.info-card p{
+    font-size:16px;
+    color:#ccc;
+    line-height:1.6;
+}
+
+.info-card a{
+    color:var(--accent2);
+    text-decoration:none;
+    transition:.3s;
+}
+
+.info-card a:hover{
+    color:var(--accent1);
+}
+
+.form-group{
+    margin-bottom:25px;
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    font-size:15px;
+    margin-bottom:8px;
+    color:#fff;
+    font-weight:600;
+}
+
+.form-group input,
+.form-group textarea{
+    background:rgba(255,255,255,0.05);
+    border:2px solid rgba(255,255,255,0.1);
+    color:#fff;
+    padding:12px 15px;
+    border-radius:8px;
+    font-size:15px;
+    font-family:'Segoe UI',sans-serif;
+    transition:.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    outline:none;
+    background:rgba(255,255,255,0.08);
+    border-color:var(--accent2);
+}
+
+.submit-btn{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 30px rgba(255,77,77,0.4);
+}
+
+/* ================= MODAL ================= */
+.modal{
+    z-index:2000;
+}
+
+/* ================= FOOTER ================= */
+footer{
+    text-align:center;
+    padding:40px;
+    color:#ffffff;
+    border-top: #ffffff solid 6px;
+    border-radius: 20% 20% 0% 0%;
+}
+
+</style>
+</head>
+<body>
+
+<div class="shape shape1"></div>
+<div class="shape shape2"></div>
+
+<header id="navbar">
+    <div class="logo">Kevin Henry Jordan Portfolio</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="section reveal" id="contact">
+
+        <div class="contact-content">
+            <div class="profile-intro">
+                <img src="Profile-bg.png" alt=""> <br>
+                <h1>Kevin Henry <span>Jordan UWIZEYIMANA</span></h1>
+                <div class="typing" id="typing"></div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+
+                <button type="submit" class="btn submit-btn">Send Message</button>
+            </form>
+        </div>
+        <div class="contact-info">
+            <div class="info-card">
+                <h3>📱 Phone</h3>
+                <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+            </div>
+            <div class="info-card">
+                <h3>📍 Location</h3>
+                <p>Your City, Country</p>
+            </div>
+            <div class="info-card">
+                <h3>🌐 Social</h3>
+                <p>
+                    <a href="#">LinkedIn</a> | 
+                    <a href="#">Twitter</a> | 
+                    <a href="#">GitHub</a>
+                </p>
+            </div>
+        </div>
+</section>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <img id="modalImg">
+        <p id="modalText"></p>
+    </div>
+</div>
+
+<footer>
+    © 2026 Kevin Henry Jordan UWIZEYIMANA. All rights reserved.
+</footer>
+
+<script>
+
+/* NAVBAR SCROLL EFFECT */
+window.addEventListener("scroll",function(){
+    document.getElementById("navbar")
+        .classList.toggle("scrolled",window.scrollY>50);
+});
+
+/* TYPING EFFECT */
+const roles=["Project Manager | Entrepreneur"];
+let i=0,j=0,deleting=false;
+function type(){
+    const el=document.getElementById("typing");
+    if(!deleting){
+        el.textContent=roles[i].substring(0,j++);
+        if(j>roles[i].length){return;}
+    }else{
+        el.textContent=roles[i].substring(0,j--);
+        if(j<0){deleting=false;i=(i+1)%roles.length;}
+    }
+    setTimeout(type,deleting?50:100);
+}
+type();
+
+/* SCROLL REVEAL */
+window.addEventListener("scroll",()=>{
+    document.querySelectorAll(".reveal").forEach(el=>{
+        if(el.getBoundingClientRect().top<window.innerHeight-100){
+            el.classList.add("active");
+        }
+    });
+});
+
+/* MODAL */
+const images=[
+"CNC Project V2.jpeg",
+"Entrepreneurship-Discussion.jpeg",
+"https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+];
+
+const texts=[
+"Design the machine from scratch and later got to use it in full production and became my first business to launch and run.",
+"Full-stack responsive web application with modern UI design.",
+"Innovation-driven startup project integrating technology and business."
+];
+
+let currentImageIndex=0;
+
+function openModal(index){
+    currentImageIndex=index;
+    document.getElementById("modal").style.display="flex";
+    updateModalContent();
+}
+
+function updateModalContent(){
+    document.getElementById("modalImg").src=images[currentImageIndex];
+    document.getElementById("modalText").textContent=texts[currentImageIndex];
+}
+
+function nextImage(){
+    currentImageIndex=(currentImageIndex+1)%images.length;
+    updateModalContent();
+}
+
+function prevImage(){
+    currentImageIndex=(currentImageIndex-1+images.length)%images.length;
+    updateModalContent();
+}
+
+document.getElementById("modal").onclick=function(e){
+    if(e.target===this)this.style.display="none";
+};
+
+</script>
+
+</body>
+</html>
