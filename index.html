@@ -105,6 +105,7 @@ nav a:hover{
 
 .hero span{
     background:linear-gradient(to right,var(--accent1),var(--accent2));
+    background-clip:text;
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
@@ -294,7 +295,7 @@ footer{
             With a proven track record of leading successful projects, I excel in driving innovation 
             and fostering community engagement.
         </p>
-        <a href="#contact" class="btn">Contact Me</a>
+        <a href="contact.html" class="btn">Contact Me</a>
     </div>
 
     <!-- Professional tech image -->
@@ -325,14 +326,24 @@ footer{
             <div class="overlay"><h3>Computer Numerical Control</h3></div>
         </div>
 
-        <div class="project" onclick="openModal(1)">
-            <img src="Entrepreneurship Week coordination.jpg">
-            <div class="overlay"><h3>Kepler College Event Coordination</h3></div>
-        </div>
-
         <div class="project" onclick="openModal(2)">
             <img src="Web-dev.jpg">
             <div class="overlay"><h3>Web Development Projects</h3></div>
+        </div>
+
+    </div>
+    <h2>Event Participation</h2>
+
+    <div class="grid">
+
+        <div class="project" onclick="openModal(3)">
+            <img src="Career1.jpg">
+            <div class="overlay"><h3>2025 Career day participation</h3></div>
+        </div>
+
+        <div class="project" onclick="openModal(1)">
+            <img src="Entrepreneurship Week coordination.jpg">
+            <div class="overlay"><h3>Kepler College Entrepreneurship Weekk Event Coordination</h3></div>
         </div>
 
     </div>
@@ -396,13 +407,15 @@ window.addEventListener("scroll",()=>{
 const images=[
 "CNC Project V2.jpeg",
 "Entrepreneurship-Discussion.jpeg",
-"Digital-Portfolio.png"
+"Digital-Portfolio.png",
+"Career-3.jpg"
 ];
 
 const texts=[
 "Design the machine from scratch and later got to use it in full production and became my first business to launch and run.",
 "Engaging in discussions during Kepler College Entrepreneurship Week, exchanging ideas and collaborating on innovative technology and business solutions. These moments reflect my passion for teamwork, leadership, and turning ideas into practical projects.",
 "This project reflects my skills in front-end development, user interface design, and creating interactive web experiences.",
+"Participating in the 2025 Career Day, engaging with industry professionals, and sharing insights about my journey as a Project Manager and Entrepreneur. This experience highlights my commitment to networking, mentorship, and continuous learning in the professional world.",
 ];
 
 let currentImageIndex=0;
